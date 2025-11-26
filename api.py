@@ -23,14 +23,6 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # 2) if the file is right beside api.py, remove "model" in the join.
 MODEL_PATH = os.path.join(BASE_DIR, "model", "rf_diabetes_smote.pkl")
 
-try:
-    model = joblib.load(MODEL_PATH)
-    print(f"Model loaded from {MODEL_PATH}")
-except Exception as e:
-    print("Error loading model:", e)
-    model = None
-
-
 @app.route('/')
 def home():
     """Endpoint untuk pengecekan status server."""
@@ -96,11 +88,19 @@ def predict():
             get_data('Income', 5.0)             # 21. Income (Input dinamis)
         ]
 
-        # Konversi ke array numpy untuk model
-        final_features = [np.array(features)]
-        
-        # Prediksi probabilitas
-        probability = model.predict_proba(final_features)
+        try:
+            model_bundle = joblib.load(MODEL_PATH)
+            imputer = model_bundle["imputer"]
+            model = model_bundle["model"]
+
+            X = np.array([features])
+            X_imp = imputer.transform(X)
+            probability = model.predict_proba(X_imp)
+
+            print(f"Model loaded from {MODEL_PATH}")
+        except Exception as e:
+            print("Error loading model:", e)
+            model = None
         
         # Risk Score = P(Prediabetes) + P(Diabetes)
         # Class 0: No Diabetes, Class 1: Prediabetes, Class 2: Diabetes
