@@ -34,10 +34,6 @@ except Exception as e:
     model = None
     print(f"❌ Fatal Error loading model: {e}")
 
-@app.route('/')
-def home():
-    return render_template('index.html')
-
 @app.route('/predict', methods=['POST'])
 def predict():
     # 1. Cek Ketersediaan Model
