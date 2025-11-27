@@ -9,7 +9,9 @@ CORS(app)
 
 # --- KONFIGURASI PATH MODEL ---
 # Pastikan file .pkl ada di folder yang sama atau sesuaikan path-nya
-MODEL_PATH = 'rf_diabetes_binary.pkl'
+# --- KONFIGURASI PATH MODEL ---
+MODEL_PATH = 'rf_brfss_diabetes_binary.pkl'
+
 
 # --- LOAD MODEL (Hanya sekali saat server start) ---
 try:
