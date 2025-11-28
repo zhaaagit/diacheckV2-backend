@@ -70,18 +70,19 @@ def predict():
         features = [
             float(data.get('HighBP', 0)),               # 1. HighBP
             float(data.get('HighChol', 0)),             # 2. HighChol
-            float(bmi),                                 # 3. BMI (Hasil Hitungan)
+            float(bmi),                                 # 3. BMI
             float(data.get('Smoker', 0)),               # 4. Smoker
             float(data.get('PhysActivity', 0)),         # 5. PhysActivity
-            float(data.get('GenHlth', 3)),              # 6. GenHlth (Default 3/Netral)
-            float(data.get('DiffWalk', 0)),             # 7. DiffWalk
-            float(data.get('Sex', 0)),                  # 8. Sex
-            float(data.get('age', 1)),                  # 9. Age (Perhatikan huruf kecil 'age' dari frontend)
-            float(data.get('education', 4)),            # 10. Education
-            float(data.get('income', 5)),               # 11. Income
-            float(data.get('NoDoc', 0)),                # 12. NoDocbcCost (Mapping dari 'NoDoc')
-            float(data.get('HeartAttackOrStroke', 0))   # 13. HeartHistory (Mapping dari 'HeartAttackOrStroke')
+            float(data.get('NoDoc', 0)),                # 6. NoDocbcCost
+            float(data.get('GenHlth', 3)),              # 7. GenHlth
+            float(data.get('DiffWalk', 0)),             # 8. DiffWalk
+            float(data.get('Sex', 0)),                  # 9. Sex
+            float(data.get('age', 1)),                  # 10. Age
+            float(data.get('education', 4)),            # 11. Education
+            float(data.get('income', 5)),               # 12. Income
+            float(data.get('HeartAttackOrStroke', 0))   # 13. HeartHistory
         ]
+
 
         # 5. Konversi ke Numpy Array (Bentuk 2D)
         final_features = np.array([features])
